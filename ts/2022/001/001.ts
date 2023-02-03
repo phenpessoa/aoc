@@ -16,16 +16,16 @@ async function doMagic(file:string) {
 
     for await (const txt of rl) {
         if (txt.length == 0) {
-            vals.push(cur)
-            cur = 0
-            continue
+            vals.push(cur);
+            cur = 0;
+            continue;
         }
         cur += +txt;
-    }
+    };
 
     if (cur !== 0) {
-        vals.push(cur)
-    }
+        vals.push(cur);
+    };
 
     vals.sort((a, b) => {
         return a-b;
@@ -33,7 +33,7 @@ async function doMagic(file:string) {
 
     console.log(vals[vals.length-1]);
     console.log(vals[vals.length-1]+vals[vals.length-2]+vals[vals.length-3]);
-}
+};
 
 doMagic('example.txt');
 doMagic('input.txt');
