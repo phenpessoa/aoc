@@ -4,17 +4,16 @@ const EXAMPLE_INPUT: &str = include_str!("example.txt");
 const INPUT: &str = include_str!("input.txt");
 
 pub fn do_magic(from: &str) -> Result<[isize; 2], Box<dyn Error>> {
-    let mut vals: Vec<isize> = Vec::new();
-    let mut cur: isize = 0;
-    let data: &str = match from {
+    let data = match from {
         "example" => EXAMPLE_INPUT,
         "input" => INPUT,
         _ => return Err("unknown input".into()),
     };
 
-    let lines: std::str::Lines = data.lines();
+    let mut vals = Vec::new();
+    let mut cur = 0;
 
-    for line in lines {
+    for line in data.lines() {
         match line.parse::<isize>() {
             Ok(val) => cur += val,
             Err(_) => {
