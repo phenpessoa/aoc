@@ -12,7 +12,7 @@ static NUMBERS: [&'static str; 18] = [
 
 fn find_digit(s: &str) -> u32 {
     let digits = NUMBERS.iter().enumerate().fold(
-        (std::usize::MAX, std::usize::MIN, 0, 0),
+        (usize::MAX, usize::MIN, 0, 0),
         |(mut first_idx, mut last_idx, mut first_digit, mut last_digit),
          (i, num)| {
             if let Some(idx) = s.find(num) {
