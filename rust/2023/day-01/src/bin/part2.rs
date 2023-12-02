@@ -1,7 +1,7 @@
 fn main() {
     let input = include_str!("./input1.txt");
     let lines = input.lines();
-    let sum: u32 = lines.map(|line| find_digit(line)).sum();
+    let sum: u32 = lines.map(find_digit).sum();
     println!("{}", sum);
 }
 
