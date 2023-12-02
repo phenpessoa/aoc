@@ -1,7 +1,6 @@
 fn main() {
-    let input = include_str!("./input1.txt");
-    let lines = input.lines();
-    let sum: u32 = lines
+    let sum: u32 = include_str!("./input1.txt")
+        .lines()
         .map(|line| {
             let mut chars = line.chars().filter(|c| c.is_digit(10));
             let first_digit = chars.next().unwrap().to_digit(10).unwrap();
@@ -11,5 +10,5 @@ fn main() {
             first_digit * 10 + last_digit
         })
         .sum();
-    println!("{}", sum);
+    println!("{sum}");
 }

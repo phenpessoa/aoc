@@ -1,8 +1,6 @@
 fn main() {
-    let input = include_str!("./input1.txt");
-    let lines = input.lines();
-    let sum: u32 = lines.map(find_digit).sum();
-    println!("{}", sum);
+    let sum: usize = include_str!("./input1.txt").lines().map(find_digit).sum();
+    println!("{sum}");
 }
 
 static NUMBERS: [&'static str; 18] = [
@@ -10,7 +8,7 @@ static NUMBERS: [&'static str; 18] = [
     "1", "2", "3", "4", "5", "6", "7", "8", "9",
 ];
 
-fn find_digit(s: &str) -> u32 {
+fn find_digit(s: &str) -> usize {
     let digits = NUMBERS.iter().enumerate().fold(
         (usize::MAX, usize::MIN, 0, 0),
         |(mut first_idx, mut last_idx, mut first_digit, mut last_digit),
@@ -18,14 +16,14 @@ fn find_digit(s: &str) -> u32 {
             if let Some(idx) = s.find(num) {
                 if idx < first_idx {
                     first_idx = idx;
-                    first_digit = NUMBERS[i % 9 + 9].parse::<u32>().unwrap();
+                    first_digit = NUMBERS[i % 9 + 9].parse::<usize>().unwrap();
                 }
             }
 
             if let Some(idx) = s.rfind(num) {
                 if idx >= last_idx {
                     last_idx = idx;
-                    last_digit = NUMBERS[i % 9 + 9].parse::<u32>().unwrap();
+                    last_digit = NUMBERS[i % 9 + 9].parse::<usize>().unwrap();
                 }
             }
 
