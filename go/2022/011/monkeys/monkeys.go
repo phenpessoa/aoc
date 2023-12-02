@@ -3,10 +3,9 @@ package monkeys
 import (
 	"bufio"
 	"io"
+	"slices"
 	"strconv"
 	"strings"
-
-	"golang.org/x/exp/slices"
 )
 
 func ParseMonkeys(r io.Reader) Monkeys {
@@ -154,8 +153,16 @@ func (ms Monkeys) LevelOfBusiness(rounds, div int) int {
 			ms[mID].items = ms[mID].items[:0]
 		}
 	}
-	slices.SortFunc(ms, func(a, b Monkey) bool {
-		return a.counter > b.counter
+	slices.SortFunc(ms, func(a, b Monkey) int {
+		if a.counter == b.counter {
+			return 0
+		}
+
+		if a.counter < b.counter {
+			return 1
+		}
+
+		return -1
 	})
 	return ms[0].counter * ms[1].counter
 }
