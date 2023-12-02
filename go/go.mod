@@ -1,5 +1,5 @@
 module github.com/Pedro-Pessoa/aoc/go
 
-go 1.19
+go 1.21.4
 
-require golang.org/x/exp v0.0.0-20230206171751-46f607a40771
+require golang.org/x/exp v0.0.0-20231127185646-65229373498e
