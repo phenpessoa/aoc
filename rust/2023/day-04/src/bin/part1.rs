@@ -13,10 +13,7 @@ fn main() {
                 })
                 .unwrap();
 
-            let count = selected_numbers
-                .iter()
-                .filter(|&x| winning_numbers.contains(x))
-                .count();
+            let count = (winning_numbers & selected_numbers).count_ones();
 
             match count {
                 0 => 0,
@@ -27,8 +24,10 @@ fn main() {
     println!("{sum}");
 }
 
-fn parse_numbers(s: &str) -> Vec<usize> {
+fn parse_numbers(s: &str) -> u128 {
+    let mut out: u128 = 0;
     s.split_whitespace()
-        .map(|num| num.trim().parse::<usize>().unwrap())
-        .collect()
+        .map(|num| out |= 1 << num.trim().parse::<usize>().unwrap())
+        .for_each(|_| ());
+    out
 }

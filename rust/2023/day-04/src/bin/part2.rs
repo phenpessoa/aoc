@@ -15,12 +15,9 @@ fn main() {
                 })
                 .unwrap();
 
-            let count = selected_numbers
-                .iter()
-                .filter(|&x| winning_numbers.contains(x))
-                .count();
+            let count = (winning_numbers & selected_numbers).count_ones();
 
-            (i, count)
+            (i, count as usize)
         })
         .for_each(|(i, count)| {
             (0..count).for_each(|j| res[i + j + 1] += res[i])
@@ -29,8 +26,10 @@ fn main() {
     println!("{sum}");
 }
 
-fn parse_numbers(s: &str) -> Vec<usize> {
+fn parse_numbers(s: &str) -> u128 {
+    let mut out: u128 = 0;
     s.split_whitespace()
-        .map(|num| num.trim().parse::<usize>().unwrap())
-        .collect()
+        .map(|num| out |= 1 << num.trim().parse::<usize>().unwrap())
+        .for_each(|_| ());
+    out
 }
