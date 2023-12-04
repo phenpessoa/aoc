@@ -12,7 +12,7 @@ fn main() {
                 i,
                 s.split(";").map(|set| set.split(",")).map(|balls| {
                     balls.map(|ball| {
-                        let mut splitted_ball = ball.trim().split(" ");
+                        let mut splitted_ball = ball.trim().split_whitespace();
                         let num = splitted_ball
                             .next()
                             .unwrap()

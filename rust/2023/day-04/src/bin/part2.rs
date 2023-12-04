@@ -30,8 +30,7 @@ fn main() {
 }
 
 fn parse_numbers(s: &str) -> Vec<usize> {
-    s.split(" ")
-        .filter(|&num| !num.is_empty())
+    s.split_whitespace()
         .map(|num| num.trim().parse::<usize>().unwrap())
         .collect()
 }
