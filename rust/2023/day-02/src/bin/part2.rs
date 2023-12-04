@@ -2,10 +2,10 @@ fn main() {
     let sum: usize = include_str!("./input.txt")
         .lines()
         .map(|line| {
-            let s = std::str::from_utf8(
-                &line.as_bytes()[(line.find(":").unwrap()) + 1..],
-            )
-            .unwrap();
+            let s = line
+                .split_once(":")
+                .map(|(_, game_data)| game_data)
+                .unwrap();
 
             s.split(";").map(|set| set.split(",")).map(|balls| {
                 balls.map(|ball| {

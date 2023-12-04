@@ -3,10 +3,11 @@ fn main() {
         .lines()
         .enumerate()
         .map(|(i, line)| {
-            let s = std::str::from_utf8(
-                &line.as_bytes()[(line.find(":").unwrap()) + 1..],
-            )
-            .unwrap();
+            let s = line
+                .split_once(":")
+                .map(|(_, game_data)| game_data)
+                .unwrap();
+
             (
                 i,
                 s.split(";").map(|set| set.split(",")).map(|balls| {
