@@ -29,7 +29,7 @@ fn main() {
 fn parse_numbers(s: &str) -> u128 {
     let mut out: u128 = 0;
     s.split_whitespace()
-        .map(|num| out |= 1 << num.trim().parse::<usize>().unwrap())
-        .for_each(|_| ());
+        .map(|num| num.trim().parse::<usize>().unwrap())
+        .for_each(|parsed| out |= 1 << parsed);
     out
 }
